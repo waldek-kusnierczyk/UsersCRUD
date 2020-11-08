@@ -1,5 +1,9 @@
 package pl.coderslab.users;
 
+import pl.coderslab.entity.User;
+import pl.coderslab.entity.UserDao;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,27 +15,17 @@ import java.io.PrintWriter;
 public class UserShowData extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserDao userDao = new UserDao();
+        String id = request.getParameter("id");
 
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html");
+        User userToShow = userDao.read(Integer.parseInt(id));
+        if (userToShow != null) {
+            request.setAttribute("userToShow", userToShow);
+        }
 
-        PrintWriter writer = response.getWriter();
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws IOException {
-
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html");
-
-        PrintWriter writer = response.getWriter();
-
+        getServletContext().getRequestDispatcher("/users/show.jsp")
+                .forward(request, response);
     }
 
 }
