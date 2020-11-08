@@ -13,6 +13,7 @@ import java.util.Arrays;
 
 @WebServlet("/user/add")
 public class UserAdd extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        UserDao userDao = new UserDao();
 //        request.setAttribute("users", userDao.findAll());
@@ -35,9 +36,10 @@ public class UserAdd extends HttpServlet {
         user.setPassword(password);
         User createdUser = userDao.create(user);
         if (createdUser != null) {
-        request.setAttribute("users", userDao.findAll());
-            getServletContext().getRequestDispatcher("/users/list.jsp")
-                    .forward(request, response);
+            //request.setAttribute("users", userDao.findAll());
+            //getServletContext().getRequestDispatcher("/users/list.jsp")
+            //        .forward(request, response);
+            response.sendRedirect("/user/list");
         } else {
             response.getWriter().append("Problem z tworzeniem użytkownika");
         }
