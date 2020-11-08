@@ -18,18 +18,21 @@
             <h6 class="m-0 font-weight-bold text-primary">Dodaj użytkownika</h6>
         </div>
         <div class="card-body">
+            <c:if test="${not empty errMsg}">
+                <h6 class="m-0 font-weight-bold text-danger">${errMsg}</h6>
+            </c:if>
             <form method="post">
                 <div class="form-group">
                     <label for="userName">Nazwa</label>
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="Nazwa użytkownika">
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="Nazwa użytkownika" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Email użytkownika">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email użytkownika" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło</label>
-                    <input type="password" class="form-control" name="password" id="password" placeholder="Hasło użytkownika">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Hasło użytkownika" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
             </form>

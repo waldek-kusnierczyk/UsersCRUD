@@ -18,19 +18,22 @@
             <h6 class="m-0 font-weight-bold text-primary">Edycja użytkownika (${userToUpdate.id})</h6>
         </div>
         <div class="card-body">
+            <c:if test="${not empty errMsg}">
+                <h6 class="m-0 font-weight-bold text-danger">${errMsg}</h6>
+            </c:if>
             <form method="post">
                 <div class="form-group">
                     <label for="userName">Nazwa</label>
-                    <input type="text" class="form-control" name="userName" id="userName" value="${userToUpdate.username}">
+                    <input type="text" class="form-control" name="userName" id="userName" value="${userToUpdate.username}" required>
                     <input type="hidden" class="form-control" name="id" id="id" value="${userToUpdate.id}">
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" name="email" id="email" value="${userToUpdate.email}">
+                    <input type="email" class="form-control" name="email" id="email" value="${userToUpdate.email}" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Hasło</label>
-                    <input type="password" class="form-control" name="password" id="password">
+                    <input type="password" class="form-control" name="password" id="password" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Zapisz</button>
             </form>

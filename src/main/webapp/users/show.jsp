@@ -22,15 +22,15 @@
             <table class="table">
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">${userToShow.id}</th>
+                    <td scope="col">${userToShow.id}</td>
                 </tr>
                 <tr>
                     <th scope="col">Nazwa Użytkownika</th>
-                    <th scope="col">${userToShow.username}</th>
+                    <td scope="col">${userToShow.username}</td>
                 </tr>
                 <tr>
                     <th scope="col">Email</th>
-                    <th scope="col">${userToShow.email}</th>
+                    <td scope="col">${userToShow.email}</td>
                 </tr>
             </table>
         </div>

@@ -73,7 +73,7 @@ public class UserDao {
     }
 
     // edycja danych użytkownika
-    public void update(User user) {
+    public int update(User user) {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement =
                     conn.prepareStatement(UPDATE_USER_QUERY);
@@ -81,9 +81,13 @@ public class UserDao {
             statement.setString(2, user.getUsername());
             statement.setString(3, hashPassword(user.getPassword()));
             statement.setInt(4, user.getId());
-            statement.executeUpdate();
+            return statement.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println(e.getMessage());
+            return -1;
         } catch (SQLException e) {
             e.printStackTrace();
+            return -1;
         }
     }
 
